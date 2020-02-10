@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "./api";
+import { Link } from "@reach/router";
 
 class Topicslist extends Component {
   state = { topics: [] };
@@ -15,14 +16,14 @@ class Topicslist extends Component {
   };
 
   render() {
-    console.log(this.state.topics);
-
     return (
       <div>
         {this.state.topics.map(topic => {
           return (
             <section key={topic.slug}>
-              <h3>{topic.slug}</h3>
+              <h3>
+                <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
+              </h3>
             </section>
           );
         })}

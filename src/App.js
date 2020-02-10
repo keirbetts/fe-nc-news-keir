@@ -6,6 +6,10 @@ import Articleslist from "./Components/Articleslist";
 import Navbar from "./Components/Navbar";
 import Topicslist from "./Components/Topicslist";
 import SingleArticle from "./Components/SingleArticle";
+import SingleTopic from "./Components/SingleTopic";
+import Commentslist from "./Components/Commentslist";
+
+//Set a state for user
 
 function App() {
   return (
@@ -16,6 +20,8 @@ function App() {
         <Articleslist path="/articles" />
         <SingleArticle path="/articles/:article_id" />
         <Topicslist path="/topics" />
+        <SingleTopic path="/topics/:slug" />
+        <Commentslist path="/articles/:article_id/comments" />
       </Router>
     </div>
   );

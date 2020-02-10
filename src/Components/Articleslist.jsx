@@ -31,8 +31,9 @@ class Articleslist extends Component {
               <p>Article_id:{article.article_id}</p>
               <p>{article.body}</p>
               <p>Votes: {article.votes}</p>
-              <p>Number of comments on article: {article.comment_count}</p>
+              <p>Comments on article: {article.comment_count}</p>
               <p>Topic: {article.topic}</p>
+              <p>created at: {article.created_at}</p>
             </section>
           );
         })}

@@ -25,3 +25,23 @@ exports.fetchAllTopics = () => {
       return data;
     });
 };
+
+exports.fetchArticlesForTopic = slug => {
+  return axios
+    .get(
+      `https://keir-back-end-nc-news.herokuapp.com/api/articles?topic=${slug}`
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+exports.fetchCommentsForArticle = article_id => {
+  return axios
+    .get(
+      `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};

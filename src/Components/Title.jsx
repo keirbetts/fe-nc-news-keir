@@ -1,7 +1,7 @@
 import React from "react";
 
 const Title = () => {
-  return <div>NC News!</div>;
+  return <h1>NC News</h1>;
 };
 
 export default Title;
