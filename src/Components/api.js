@@ -1,8 +1,10 @@
 const axios = require("axios");
 
-exports.fetchAllArticles = () => {
+exports.fetchAllArticles = sort_by => {
   return axios
-    .get("https://keir-back-end-nc-news.herokuapp.com/api/articles")
+    .get("https://keir-back-end-nc-news.herokuapp.com/api/articles", {
+      params: { sort_by }
+    })
     .then(({ data }) => {
       return data;
     });
@@ -43,5 +45,23 @@ exports.fetchCommentsForArticle = article_id => {
     )
     .then(({ data }) => {
       return data;
+    });
+};
+
+exports.patchArticleVotes = (article_id, inc_votes) => {
+  return axios.patch(
+    `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}`,
+    { inc_votes }
+  );
+};
+
+exports.patchCommentsVotes = (article_id, inc_votes) => {
+  return axios
+    .patch(
+      `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+      { inc_votes }
+    )
+    .then(() => {
+      console.log("-----");
     });
 };

@@ -2,7 +2,7 @@
   text-align: left;
   margin: 0px 10px;
   display: grid;
-  grid-template-rows: 50px;
+  grid-template-rows: 70px;
 }
 
 .App-header {
@@ -19,3 +19,7 @@
 .App-link {
   color: #61dafb;
 }
+
+/* .select {
+  margin: 10px;
+} */
