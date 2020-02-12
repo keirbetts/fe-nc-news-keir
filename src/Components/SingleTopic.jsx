@@ -4,12 +4,17 @@ import ErrorHandler from "./ErrorHandler";
 import Loader from "./Loader";
 
 class SingleTopic extends Component {
-  state = { articles: [], isLoading: true };
+  state = { articles: [], isLoading: true, err: null };
 
   singleTopicInvoker = () => {
-    api.fetchArticlesForTopic(this.props.slug).then(({ articles }) => {
-      this.setState({ articles: articles, isLoading: false }, () => {});
-    });
+    api
+      .fetchArticlesForTopic(this.props.slug)
+      .then(({ articles }) => {
+        this.setState({ articles: articles, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({ err, isLoading: false });
+      });
   };
 
   componentDidMount() {
@@ -18,6 +23,7 @@ class SingleTopic extends Component {
 
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.state.err) return <ErrorHandler />;
     return (
       <div>
         {this.state.articles.map(article => {

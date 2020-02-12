@@ -65,7 +65,6 @@ exports.patchCommentsVotes = (comment_id, inc_votes) => {
 };
 
 exports.postCommentToArticle = (comment, article_id) => {
-  console.log(comment, "------");
   return axios
     .post(
       `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}/comments`,

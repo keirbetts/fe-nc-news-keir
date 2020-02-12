@@ -1,10 +1,14 @@
 import React from "react";
 
 const ErrorHandler = ({ err }) => {
-  const msg = "Error, something went wrong";
+  let customErrMsg;
+  if (err) {
+    customErrMsg = err.response.data.msg;
+  }
+  const errMsg = "Error, something went wrong";
   return (
     <section>
-      <h3>{msg}</h3>
+      <h3>{customErrMsg || errMsg}</h3>
     </section>
   );
 };

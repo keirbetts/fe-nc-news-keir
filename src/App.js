@@ -25,7 +25,10 @@ class App extends Component {
           <SingleArticle path="/articles/:article_id" />
           <Topicslist path="/topics" />
           <SingleTopic path="/topics/:slug" />
-          <Commentslist path="/articles/:article_id/comments" />
+          <Commentslist
+            path="/articles/:article_id/comments"
+            user={this.state.user}
+          />
           <ErrorHandler default />
         </Router>
       </div>

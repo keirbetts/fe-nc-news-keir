@@ -3,14 +3,20 @@ import * as api from "./api";
 import CommentVoter from "./CommentVoter";
 import CommentAdder from "./CommentAdder";
 import Loader from "./Loader";
+import ErrorHandler from "./ErrorHandler";
 
 class Commentslist extends Component {
-  state = { comments: [], isLoading: true };
+  state = { comments: [], isLoading: true, err: null, user: "jessjelly" };
 
   commentInvoker() {
-    api.fetchCommentsForArticle(this.props.article_id).then(({ comments }) => {
-      this.setState({ comments: comments, isLoading: false }, () => {});
-    });
+    api
+      .fetchCommentsForArticle(this.props.article_id)
+      .then(({ comments }) => {
+        this.setState({ comments: comments, isLoading: false }, () => {});
+      })
+      .catch(err => {
+        this.setState({ err, isLoading: false });
+      });
   }
 
   componentDidMount() {
@@ -24,16 +30,22 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
-    const commentId = event.target.parentElement.id;
-    api.deleteCommentForArticle(commentId).then(() => {
-      this.setState(currentState => {
-        return { comments: [...currentState.comments] };
+    if (this.state.user === "jessjelly") {
+      const commentId = event.target.parentElement.id;
+      api.deleteCommentForArticle(commentId).then(() => {
+        this.setState(currentState => {
+          alert("Comment Deleted Successfully");
+          return { comments: [...currentState.comments] };
+        });
       });
-    });
+    } else {
+      alert("You must be logged in!");
+    }
   };
 
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.state.err) return <ErrorHandler />;
     return (
       <div>
         <CommentAdder
@@ -44,7 +56,7 @@ class Commentslist extends Component {
         {this.state.comments.map(comment => {
           return (
             <section id={comment.comment_id} key={comment.comment_id}>
-              <h4>{comment.author} commented:</h4>
+              <h4>{this.state.user} commented:</h4>
               <p>{comment.body}</p>
 
               <p>Article_id: {comment.article_id}</p>

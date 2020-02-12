@@ -19,8 +19,8 @@ class Articleslist extends Component {
       .then(({ articles }) => {
         this.setState({ articles: articles, isLoading: false });
       })
-      .catch(err => {
-        this.setState({ err });
+      .catch(({ err }) => {
+        this.setState({ err, isLoading: false });
       });
   };
 
@@ -64,12 +64,6 @@ class Articleslist extends Component {
               id={article.article_id}
               key={article.article_id}
             >
-              {
-                <ArticleVoter
-                  article_id={article.article_id}
-                  votes={article.votes}
-                />
-              }
               <h3>
                 <Link to={`/articles/${article.article_id}`}>
                   {article.title}
@@ -77,7 +71,6 @@ class Articleslist extends Component {
               </h3>
               <p>Article_id:{article.article_id}</p>
               <p>{article.body}</p>
-              <p>Votes: {article.votes}</p>
               <p>Comments on article: {article.comment_count}</p>
               <p>Topic: {article.topic}</p>
               <p>created at: {article.created_at}</p>
