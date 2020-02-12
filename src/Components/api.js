@@ -6,6 +6,7 @@ exports.fetchAllArticles = sort_by => {
       params: { sort_by }
     })
     .then(({ data }) => {
+      console.log(sort_by, "-----");
       return data;
     });
 };
@@ -55,13 +56,31 @@ exports.patchArticleVotes = (article_id, inc_votes) => {
   );
 };
 
-exports.patchCommentsVotes = (article_id, inc_votes) => {
+exports.patchCommentsVotes = (comment_id, inc_votes) => {
   return axios
     .patch(
-      `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+      `https://keir-back-end-nc-news.herokuapp.com/api/comments/${comment_id}`,
       { inc_votes }
     )
-    .then(() => {
-      console.log("-----");
+    .then(() => {});
+};
+
+exports.postCommentToArticle = (comment, article_id) => {
+  console.log(comment, "------");
+  return axios
+    .post(
+      `https://keir-back-end-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+      comment
+    )
+    .then(({ data }) => {
+      return data;
     });
+};
+
+exports.deleteCommentForArticle = comment_id => {
+  return axios
+    .delete(
+      `https://keir-back-end-nc-news.herokuapp.com/api/comments/${comment_id}`
+    )
+    .then(console.log("deleted"));
 };

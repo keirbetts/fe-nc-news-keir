@@ -15,9 +15,6 @@ class Voters extends Component {
     });
   };
 
-  //WORKING BUT NOT UPON REFRESH
-  // 400 BAD REQUEST
-
   render() {
     return (
       <div>

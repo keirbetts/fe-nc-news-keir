@@ -8,7 +8,7 @@ class CommentVoter extends Component {
   };
 
   handleClick = vote => {
-    api.patchCommentsVotes(vote);
+    api.patchCommentsVotes(this.props.comment_id, vote);
     this.setState(currentState => {
       return {
         optimisticVotes: currentState.optimisticVotes + vote,
@@ -16,9 +16,6 @@ class CommentVoter extends Component {
       };
     });
   };
-
-  //WORKING BUT NOT ON REFRESH
-  //405 METHOD NOT ALLOWED
 
   render() {
     return (

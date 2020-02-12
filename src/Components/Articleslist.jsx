@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api";
-import Voters from "./ArticleVoter";
+import ArticleVoter from "./ArticleVoter";
 
 class Articleslist extends Component {
   state = {
@@ -15,13 +15,19 @@ class Articleslist extends Component {
     });
   };
 
-  handleClick = clickEvent => {
-    let selected = clickEvent.target.value;
-    if (selected === "Comment count") this.setState({ input: selected });
+  handleSubmit = event => {
+    event.preventDefault();
+    api.fetchAllArticles(this.state.input).then(({ articles }) => {
+      this.setState(currentState => {
+        return { articles, ...currentState.articles };
+      });
+    });
+  };
 
-    //clickEvent.target.value
-    //pass down the sort_by on props
-    //spread in the state
+  handleClick = ({ target: { id, value } }) => {
+    this.setState(currentState => {
+      return { ...currentState, [id]: value };
+    });
   };
 
   componentDidMount = () => {
@@ -31,17 +37,24 @@ class Articleslist extends Component {
   render() {
     return (
       <div>
-        Sort By:
-        <select className="select" onChange={this.handleClick}>
-          <option id="none">Select an Option</option>
-          <option id="date created">Date</option>
-          <option id="commentCount">Comment count</option>
-          <option id="votes">Votes</option>
-        </select>
+        <form onSubmit={this.handleSubmit}>
+          <select id="input" className="select" onChange={this.handleClick}>
+            <option value="none">Select an Option</option>
+            <option value="created_at">Date</option>
+            <option value="comment_count">Comment count</option>
+            <option value="votes">Votes</option>
+          </select>
+          <button className="button">Sort By</button>
+        </form>
         {this.state.articles.map(article => {
           return (
             <section id={article.article_id} key={article.article_id}>
-              {<Voters id={article.article_id} votes={article.votes} />}
+              {
+                <ArticleVoter
+                  article_id={article.article_id}
+                  votes={article.votes}
+                />
+              }
               <h3>
                 <Link to={`/articles/${article.article_id}`}>
                   {article.title}
