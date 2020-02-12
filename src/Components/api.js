@@ -6,7 +6,6 @@ exports.fetchAllArticles = sort_by => {
       params: { sort_by }
     })
     .then(({ data }) => {
-      console.log(sort_by, "-----");
       return data;
     });
 };

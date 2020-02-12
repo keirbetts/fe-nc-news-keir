@@ -45,16 +45,18 @@ class Commentslist extends Component {
               <h4>{comment.author} commented:</h4>
               <p>{comment.body}</p>
 
-              <CommentVoter
-                comment_id={comment.comment_id}
-                votes={comment.votes}
-              />
-
               <p>Article_id: {comment.article_id}</p>
               <p>Votes: {comment.votes}</p>
               <p>comment posted at: {comment.created_at}</p>
               <p>Comment_id: {comment.comment_id}</p>
-              <button onClick={this.handleDelete}>Delete Comment</button>
+              <CommentVoter
+                className="votes"
+                comment_id={comment.comment_id}
+                votes={comment.votes}
+              />
+              <button className="deleteButton" onClick={this.handleDelete}>
+                Delete Comment
+              </button>
             </section>
           );
         })}

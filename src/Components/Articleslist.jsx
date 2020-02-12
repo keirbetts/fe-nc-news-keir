@@ -26,7 +26,7 @@ class Articleslist extends Component {
 
   handleClick = ({ target: { id, value } }) => {
     this.setState(currentState => {
-      return { ...currentState, [id]: value };
+      return { currentState, [id]: value };
     });
   };
 
@@ -48,7 +48,11 @@ class Articleslist extends Component {
         </form>
         {this.state.articles.map(article => {
           return (
-            <section id={article.article_id} key={article.article_id}>
+            <section
+              className="articles"
+              id={article.article_id}
+              key={article.article_id}
+            >
               {
                 <ArticleVoter
                   article_id={article.article_id}
@@ -66,6 +70,12 @@ class Articleslist extends Component {
               <p>Comments on article: {article.comment_count}</p>
               <p>Topic: {article.topic}</p>
               <p>created at: {article.created_at}</p>
+              {
+                <ArticleVoter
+                  article_id={article.article_id}
+                  votes={article.votes}
+                />
+              }
             </section>
           );
         })}
