@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import * as api from "./api";
 import CommentVoter from "./CommentVoter";
 import CommentAdder from "./CommentAdder";
+import Loader from "./Loader";
 
 class Commentslist extends Component {
-  state = { comments: [] };
+  state = { comments: [], isLoading: true };
 
   commentInvoker() {
     api.fetchCommentsForArticle(this.props.article_id).then(({ comments }) => {
-      this.setState({ comments: comments }, () => {});
+      this.setState({ comments: comments, isLoading: false }, () => {});
     });
   }
 
@@ -32,6 +33,7 @@ class Commentslist extends Component {
   };
 
   render() {
+    if (this.state.isLoading) return <Loader />;
     return (
       <div>
         <CommentAdder

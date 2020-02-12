@@ -4,6 +4,7 @@ import * as api from "./api";
 class Voters extends Component {
   state = {
     optimisticVotes: 0
+    // isLoading: true
   };
 
   handleClick = vote => {

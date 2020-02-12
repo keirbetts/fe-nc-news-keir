@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import * as api from "./api";
 import { Link } from "@reach/router";
+import Loader from "./Loader";
 
 class SingleArticle extends Component {
   state = {
-    article: []
+    article: [],
+    isLoading: true
   };
 
   singleArticleInvoker = () => {
     api.fetchSingleArticle(this.props.article_id).then(({ article }) => {
-      this.setState({ article: article }, () => {});
+      this.setState({ article: article, isLoading: false }, () => {});
     });
   };
 
@@ -18,6 +20,7 @@ class SingleArticle extends Component {
   };
 
   render() {
+    if (this.state.isLoading) return <Loader />;
     const { title, body, votes, topic, article_id } = this.state.article;
     return (
       <div id={article_id}>

@@ -2,17 +2,26 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "./api";
 import ArticleVoter from "./ArticleVoter";
+import Loader from "./Loader";
+import ErrorHandler from "./ErrorHandler";
 
 class Articleslist extends Component {
   state = {
     articles: [],
-    input: ""
+    input: "",
+    err: null,
+    isLoading: true
   };
 
   articlesInvoker = () => {
-    api.fetchAllArticles().then(({ articles }) => {
-      this.setState({ articles: articles }, () => {});
-    });
+    api
+      .fetchAllArticles()
+      .then(({ articles }) => {
+        this.setState({ articles: articles, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({ err });
+      });
   };
 
   handleSubmit = event => {
@@ -35,6 +44,8 @@ class Articleslist extends Component {
   };
 
   render() {
+    if (this.state.isLoading) return <Loader />;
+    if (this.state.err) return <ErrorHandler />;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import * as api from "./api";
+import ErrorHandler from "./ErrorHandler";
+import Loader from "./Loader";
 
 class SingleTopic extends Component {
-  state = { articles: [] };
+  state = { articles: [], isLoading: true };
 
   singleTopicInvoker = () => {
     api.fetchArticlesForTopic(this.props.slug).then(({ articles }) => {
-      this.setState({ articles: articles }, () => {});
+      this.setState({ articles: articles, isLoading: false }, () => {});
     });
   };
 
@@ -15,6 +17,7 @@ class SingleTopic extends Component {
   }
 
   render() {
+    if (this.state.isLoading) return <Loader />;
     return (
       <div>
         {this.state.articles.map(article => {

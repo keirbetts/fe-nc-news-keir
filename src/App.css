@@ -1,18 +1,20 @@
 .App {
   text-align: left;
-  margin: 25px auto;
+  /* margin: 10px 10px 10px 10px; */
   display: grid;
   grid-template-rows: 70px;
-  width: 95%;
   background-color: rgb(121, 201, 233);
+  padding: 10px 10px 10px 10px;
 }
 
 body {
-  background-color: rgb(86, 86, 223);
+  background-color: rgb(121, 201, 233);
 }
 
 .title {
   margin: 0px auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
 }
 
 .App-link {
@@ -20,7 +22,7 @@ body {
 }
 
 .articles {
-  margin: 0px 10px;
+  margin: 0px 0px;
 }
 
 .select {

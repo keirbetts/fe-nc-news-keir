@@ -8,6 +8,7 @@ import Topicslist from "./Components/Topicslist";
 import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Commentslist from "./Components/Commentslist";
+import ErrorHandler from "./Components/ErrorHandler";
 
 class App extends Component {
   state = {
@@ -25,6 +26,7 @@ class App extends Component {
           <Topicslist path="/topics" />
           <SingleTopic path="/topics/:slug" />
           <Commentslist path="/articles/:article_id/comments" />
+          <ErrorHandler default />
         </Router>
       </div>
     );
