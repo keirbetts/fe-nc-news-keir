@@ -6,7 +6,7 @@ import Loader from "./Loader";
 import ErrorHandler from "./ErrorHandler";
 
 class Commentslist extends Component {
-  state = { comments: [], isLoading: true, err: null, user: "jessjelly" };
+  state = { comments: [], isLoading: true, user: "jessjelly", err: null };
 
   commentInvoker() {
     api
@@ -32,20 +32,32 @@ class Commentslist extends Component {
   handleDelete = event => {
     if (this.state.user === "jessjelly") {
       const commentId = event.target.parentElement.id;
-      api.deleteCommentForArticle(commentId).then(() => {
-        this.setState(currentState => {
-          alert("Comment Deleted Successfully");
-          return { comments: [...currentState.comments] };
+      api
+        .deleteCommentForArticle(commentId)
+        .then(() => {
+          this.setState(currentState => {
+            alert("Comment Deleted Successfully! Please refresh the page");
+            return { comments: [...currentState.comments] };
+          });
+        })
+        .catch(err => {
+          alert(
+            "Unable to delete at the current time! Try refreshing the page"
+          );
+          this.setState(currentState => {
+            return { comments: currentState.comments - event };
+          });
         });
-      });
     } else {
       alert("You must be logged in!");
     }
   };
 
+  //currentState.comments - event, for connectivity issues on handle delete
+
   render() {
     if (this.state.isLoading) return <Loader />;
-    if (this.state.err) return <ErrorHandler />;
+    if (this.state.err) return <ErrorHandler err={this.state.err} />;
     return (
       <div>
         <CommentAdder

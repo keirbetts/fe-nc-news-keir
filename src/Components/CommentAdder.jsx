@@ -25,8 +25,6 @@ class CommentAdder extends Component {
       });
   };
 
-  //HANDLE ERRORS
-
   render() {
     if (this.state.err) return <ErrorHandler />;
     return (
