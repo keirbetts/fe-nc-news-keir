@@ -53,8 +53,6 @@ class Commentslist extends Component {
     }
   };
 
-  //currentState.comments - event, for connectivity issues on handle delete
-
   render() {
     if (this.state.isLoading) return <Loader />;
     if (this.state.err) return <ErrorHandler err={this.state.err} />;

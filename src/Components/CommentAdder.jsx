@@ -3,7 +3,7 @@ import * as api from "./api";
 import ErrorHandler from "./ErrorHandler";
 
 class CommentAdder extends Component {
-  state = { body: "", author: "jessjelly", err: false };
+  state = { body: "", author: "jessjelly" };
 
   handleChange = (inputValue, key) => {
     this.setState({ [key]: inputValue });

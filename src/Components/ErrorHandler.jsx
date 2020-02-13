@@ -1,9 +1,8 @@
 import React from "react";
 
 const ErrorHandler = ({ err }) => {
-  console.log(err);
   let customErrMsg;
-  if (err !== undefined) {
+  if (err) {
     customErrMsg = err.response.data.msg;
   }
   const errMsg = "Error, something went wrong";

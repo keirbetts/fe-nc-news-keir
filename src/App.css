@@ -1,20 +1,31 @@
 .App {
   text-align: left;
-  /* margin: 10px 10px 10px 10px; */
   display: grid;
   grid-template-rows: 70px;
-  background-color: rgb(121, 201, 233);
+  background-color: white;
   padding: 10px 10px 10px 10px;
 }
 
 body {
-  background-color: rgb(121, 201, 233);
+  background-color: white;
 }
 
 .title {
   margin: 0px auto;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: italic;
+  color: red;
+}
+
+/* h1 {
+  border: 3px solid gray;
+  width: 165px;
+  height: 40px;
+} */
+
+#home {
+  text-align: center;
+  margin: -135px;
 }
 
 .App-link {
@@ -22,7 +33,9 @@ body {
 }
 
 .articles {
-  margin: 0px 0px;
+  /* border: 3px solid gray; */
+  /* width: 1400px;
+  margin: 10px 0px; */
 }
 
 .select {

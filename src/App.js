@@ -9,6 +9,7 @@ import SingleArticle from "./Components/SingleArticle";
 import SingleTopic from "./Components/SingleTopic";
 import Commentslist from "./Components/Commentslist";
 import ErrorHandler from "./Components/ErrorHandler";
+import Home from "./Components/Home";
 
 class App extends Component {
   state = {
@@ -21,6 +22,7 @@ class App extends Component {
         Logged in as: {this.state.user}
         <Navbar />
         <Router>
+          <Home path="/" />
           <Articleslist path="/articles" />
           <SingleArticle path="/articles/:article_id" />
           <Topicslist path="/topics" />
@@ -29,7 +31,7 @@ class App extends Component {
             path="/articles/:article_id/comments"
             user={this.state.user}
           />
-          <ErrorHandler default />
+          <ErrorHandler default path="/*" />
         </Router>
       </div>
     );
