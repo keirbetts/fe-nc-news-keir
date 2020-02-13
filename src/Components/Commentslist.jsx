@@ -6,7 +6,7 @@ import Loader from "./Loader";
 import ErrorHandler from "./ErrorHandler";
 
 class Commentslist extends Component {
-  state = { comments: [], isLoading: true, user: "jessjelly", err: null };
+  state = { comments: [], isLoading: true, err: null };
 
   commentInvoker() {
     api
@@ -30,7 +30,7 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
-    if (this.state.user === "jessjelly") {
+    if (this.props.user === "jessjelly") {
       const commentId = event.target.parentElement.id;
       api
         .deleteCommentForArticle(commentId)
@@ -62,11 +62,12 @@ class Commentslist extends Component {
           comments={this.state.comments}
           addComment={this.addComment}
           article_id={this.props.article_id}
+          user={this.props.user}
         />
         {this.state.comments.map(comment => {
           return (
             <section id={comment.comment_id} key={comment.comment_id}>
-              <h4>{this.state.user} commented:</h4>
+              <h4>{this.props.user} commented:</h4>
               <p>{comment.body}</p>
 
               <p>Article_id: {comment.article_id}</p>

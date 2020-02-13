@@ -33,6 +33,7 @@ class CommentVoter extends Component {
       <div>
         <p>Likes: {this.props.votes + this.state.optimisticVotes}</p>
         <button
+          className="commentLikeButton"
           onClick={() => {
             this.handleClick(1);
           }}
@@ -41,6 +42,7 @@ class CommentVoter extends Component {
           Like Comment
         </button>
         <button
+          className="commentDislikeButton"
           onClick={() => {
             this.handleClick(-1);
           }}

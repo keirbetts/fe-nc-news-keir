@@ -17,12 +17,6 @@ body {
   color: red;
 }
 
-/* h1 {
-  border: 3px solid gray;
-  width: 165px;
-  height: 40px;
-} */
-
 #home {
   text-align: center;
   margin: -135px;
@@ -32,18 +26,12 @@ body {
   color: #61dafb;
 }
 
-.articles {
-  /* border: 3px solid gray; */
-  /* width: 1400px;
-  margin: 10px 0px; */
-}
-
 .select {
   margin: 0px;
 }
 
 .button {
-  margin: 10px;
+  margin: 10px 10px;
 }
 
 .votes {
@@ -52,4 +40,13 @@ body {
 
 .deleteButton {
   margin: 15px 0px;
+  color: red;
+}
+
+.commentDislikeButton {
+  margin: 5px;
+}
+
+.commentInput {
+  margin: 5px;
 }
