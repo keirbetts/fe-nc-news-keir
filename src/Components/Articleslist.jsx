@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import * as api from "./api";
+import * as api from "../utils/api";
 import ArticleVoter from "./ArticleVoter";
 import Loader from "./Loader";
 import ErrorHandler from "./ErrorHandler";

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import * as api from "./api";
+import * as api from "../utils/api";
 import { Link } from "@reach/router";
 import Loader from "./Loader";
 import ErrorHandler from "./ErrorHandler";
+import ArticleVoter from "./ArticleVoter";
 
 class SingleArticle extends Component {
   state = {
@@ -34,11 +35,12 @@ class SingleArticle extends Component {
       <div id={article_id}>
         <h3>{title}</h3>
         <p>{body}</p>
-        <p>Votes: {votes}</p>
+
         <p>Topic: {topic}</p>
         <p>
           <Link to={`/articles/${article_id}/comments`}>Comments</Link>
         </p>
+        <ArticleVoter article_id={article_id} votes={votes} />
       </div>
     );
   }

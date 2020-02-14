@@ -1,30 +1,26 @@
 import React, { Component } from "react";
-import * as api from "./api";
+import * as api from "../utils/api";
 import ErrorHandler from "./ErrorHandler";
 
-class Voters extends Component {
+class ArticleVoter extends Component {
   state = {
     optimisticVotes: 0
   };
 
   handleClick = vote => {
-    api
-      .patchArticleVotes(this.props.article_id, vote)
-      .then(() => {
-        this.setState(currentState => {
-          return {
-            optimisticVotes: currentState.optimisticVotes + vote
-          };
-        });
-      })
-      .catch(err => {
-        alert("Voting is Down");
-        this.setState(currentState => {
-          return {
-            optimisticVotes: currentState.optimisticVotes - vote
-          };
-        });
+    this.setState(currentState => {
+      return {
+        optimisticVotes: currentState.optimisticVotes + vote
+      };
+    });
+    api.patchArticleVotes(this.props.article_id, vote).catch(err => {
+      alert("Voting is Down");
+      this.setState(currentState => {
+        return {
+          optimisticVotes: currentState.optimisticVotes - vote
+        };
       });
+    });
   };
 
   render() {
@@ -53,4 +49,4 @@ class Voters extends Component {
   }
 }
 
-export default Voters;
+export default ArticleVoter;

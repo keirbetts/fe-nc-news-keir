@@ -1,28 +1,32 @@
 import React, { Component } from "react";
-import * as api from "./api";
+import * as api from "../utils/api";
 import ErrorHandler from "./ErrorHandler";
 
 class CommentAdder extends Component {
-  state = { body: "", author: "jessjelly" };
+  state = { body: "" };
 
   handleChange = (inputValue, key) => {
     this.setState({ [key]: inputValue });
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-    api
-      .postCommentToArticle(
-        { ...this.state },
-        this.props.article_id,
-        this.state.user
-      )
-      .then(newComment => {
-        this.props.addComment(newComment.comment);
-      })
-      .catch(err => {
-        this.setState({ err: true });
-      });
+    if (this.props.user) {
+      event.preventDefault();
+      this.setState({ body: "" });
+      api
+        .postCommentToArticle(
+          { ...this.state, username: this.props.user },
+          this.props.article_id
+        )
+        .then(newComment => {
+          this.props.addComment(newComment.comment);
+        })
+        .catch(err => {
+          this.setState({ err: true });
+        });
+    } else {
+      alert("You must be logged in to post a comment!");
+    }
   };
 
   render() {
@@ -39,6 +43,7 @@ class CommentAdder extends Component {
               }}
               type="text"
               id="body"
+              value={this.state.body}
               required
             ></input>
             <button className="button">Add Comment</button>

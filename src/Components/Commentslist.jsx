@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as api from "./api";
+import * as api from "../utils/api";
 import CommentVoter from "./CommentVoter";
 import CommentAdder from "./CommentAdder";
 import Loader from "./Loader";
@@ -30,7 +30,7 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
-    if (this.props.user === "jessjelly") {
+    if (this.props.user) {
       const commentId = event.target.parentElement.id;
       api
         .deleteCommentForArticle(commentId)
@@ -49,7 +49,7 @@ class Commentslist extends Component {
           });
         });
     } else {
-      alert("You must be logged in!");
+      alert("You must be logged in to delete a comment!");
     }
   };
 
@@ -67,7 +67,7 @@ class Commentslist extends Component {
         {this.state.comments.map(comment => {
           return (
             <section id={comment.comment_id} key={comment.comment_id}>
-              <h4>{this.props.user} commented:</h4>
+              <h4>{comment.author} commented:</h4>
               <p>{comment.body}</p>
 
               <p>Article_id: {comment.article_id}</p>
