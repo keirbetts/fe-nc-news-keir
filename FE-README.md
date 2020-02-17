@@ -30,6 +30,8 @@ Delete the build folder from the netlify folder and move the newly created build
 
 ### `Link to API`
 
+https://keir-betts-nc-news.netlify.com/
+
 ### `Link to back-end repo`
 
 https://github.com/keirbetts/keir-betts-nc-news-be
