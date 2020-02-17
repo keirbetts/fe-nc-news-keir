@@ -30,6 +30,8 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
+    let commentsArr = this.state.comments;
+    console.log(commentsArr);
     if (this.props.user === "jessjelly") {
       const commentId = event.target.parentElement.id;
       api
@@ -79,9 +81,11 @@ class Commentslist extends Component {
                 comment_id={comment.comment_id}
                 votes={comment.votes}
               />
-              <button className="deleteButton" onClick={this.handleDelete}>
-                Delete Comment
-              </button>
+              {this.props.user === comment.author && (
+                <button className="deleteButton" onClick={this.handleDelete}>
+                  Delete Comment
+                </button>
+              )}
             </section>
           );
         })}
