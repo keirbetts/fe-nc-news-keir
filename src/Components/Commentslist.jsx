@@ -30,29 +30,21 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
-    let commentsArr = this.state.comments;
-    console.log(commentsArr);
-    if (this.props.user === "jessjelly") {
-      const commentId = event.target.parentElement.id;
-      api
-        .deleteCommentForArticle(commentId)
-        .then(() => {
-          this.setState(currentState => {
-            const filteredComments = currentState.comments.filter(comment => {
-              return comment.comment_id !== +commentId;
-            });
-            return { comments: filteredComments };
+    const commentId = event.target.parentElement.id;
+    api
+      .deleteCommentForArticle(commentId)
+      .then(() => {
+        this.setState(currentState => {
+          const filteredComments = currentState.comments.filter(comment => {
+            return comment.comment_id !== +commentId;
           });
-        })
-        .catch(err => {
-          alert(
-            "Unable to delete at the current time! Try refreshing the page"
-          );
-          this.setState({ err });
+          return { comments: filteredComments };
         });
-    } else {
-      alert("You must be logged in to delete a comment!");
-    }
+      })
+      .catch(err => {
+        alert("Unable to delete at the current time! Try refreshing the page");
+        this.setState({ err });
+      });
   };
 
   render() {
