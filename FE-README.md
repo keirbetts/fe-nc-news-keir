@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### `General info`
 
-This is a project completed over the period of five days, subsequent to five days spent building a back-end express server (link to repo below). The aim was to create a website in a similar vein to reddit, where users can read and interact with articles, via the medium of voting and commenting.
+This was a project completed over the period of five days, subsequent to five days spent building a back-end express server (link to repo below). The aim was to create a website in a similar vein to reddit, where users can read and interact with articles, via the medium of voting and commenting.
 
 ### `clone repository from github`
 
@@ -32,6 +32,6 @@ Delete the build folder from the netlify folder and move the newly created build
 
 ### `Link to back-end repo`
 
-https://github.com/keirbetts/Back-end-review
+https://github.com/keirbetts/keir-betts-nc-news-be
 
 DELETE UNNECESSARY FILES FROM BACK-END. e.g. README

@@ -30,7 +30,6 @@ class Commentslist extends Component {
   };
 
   handleDelete = event => {
-    //SORT OUT LOGIN FUNCTIONALITY
     if (this.props.user === "jessjelly") {
       const commentId = event.target.parentElement.id;
       api
